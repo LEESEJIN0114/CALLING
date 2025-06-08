@@ -1,157 +1,141 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CALLING!</title>
-<style>
-  body {
-    margin: 0; padding: 0;
-    background-color: black;
-    color: #00ff00;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none;
-    overflow-x: hidden;
-  }
-  h1 {
-    margin: 8px 0 0 0; /* 조금 더 위로 */
-    font-size: 40pt; /* 약간 줄임 */
-    font-weight: 900;
-    text-align: center;
-  }
-  #top-timer {
-    position: fixed;
-    top: 10px;
-    right: 15px;
-    font-size: 18pt; /* 3pt 줄임 */
-    font-weight: 700;
-    color: #00ff00;
-    user-select: none;
-    z-index: 9999;
-  }
-  #info-section {
-    max-width: 480px;
-    margin: 30px auto 5px auto; /* 본문 더 위로 당김 (기존 50px → 30px) */
-    padding: 0 15px 5px 15px;
-    font-size: 6.5pt; /* 폰트 약간 줄임 */
-    line-height: 1.25; /* 줄간격 약간 줄임 */
-    user-select: none;
-    white-space: normal;
-  }
-  .action-line {
-    margin-top: 35px;
-  }
-  .top-text-and-button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-  }
-  .top-text {
-    color: #00ff00;
-    font-size: 7pt; /* 줄임 */
-    white-space: nowrap;
-  }
-  .action-button {
-    background-color: black;
-    border: 1.5px solid #004400; /* 초기 어두운 상태 */
-    color: #004400;
-    font-size: 7pt; /* 줄임 */
-    padding: 3px 12px;
-    cursor: default;
-    user-select: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    white-space: nowrap;
-  }
-  .action-button.enabled {
-    border-color: #00ff00;
-    color: #00ff00;
-    cursor: pointer;
-  }
-  .action-button.enabled:hover {
-    background-color: #00ff00;
-    color: black;
-  }
-  .countdown {
-    color: #00ff00;
-    font-size: 7pt; /* 줄임 */
-    min-width: 40px;
-    text-align: left;
-    user-select: none;
-  }
-  .bottom-text {
-    color: #ff0000;
-    font-size: 6.5pt; /* 줄임 */
-    margin-top: 5px;
-    white-space: normal;
-    user-select: none;
-    display: none;
-  }
-  #repair-section {
-    margin-top: 10px; /* 더 위로 당김 (기존 15px → 10px) */
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* flex 삭제하고 수직 정렬로 변경 */
-    display: block;
-    user-select: none;
-  }
-  #repair-button {
-    background-color: #330033; /* 초기 어두운 상태 */
-    border: none;
-    color: #a080a0;
-    font-size: 7pt; /* 줄임 */
-    padding: 5px 18px;
-    font-weight: 600;
-    cursor: default;
-    user-select: none;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-    display: block;
-    margin: 0 auto;
-  }
-  #repair-button.enabled {
-    background-color: #800080;
-    color: #d0b0d0;
-    cursor: pointer;
-  }
-  #repair-button.enabled:hover {
-    background-color: #b040b0;
-  }
-  #repair-countdown {
-    color: #800080;
-    font-size: 7pt; /* 줄임 */
-    user-select: none;
-    display: none;
-    text-align: center;
-    margin-top: 5px;
-  }
-  #repair-message {
-    color: #800080;
-    font-size: 7pt; /* 줄임 */
-    display: none;
-    user-select: none;
-    white-space: normal;
-    max-width: 480px;
-    margin: 3px auto 0 auto; /* 버튼 바로 아래에 붙도록 마진 조절 */
-    text-align: center;
-  }
-  /* 스크롤 바 없애기 */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CALLING!</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin: 8px 0 0 0;
+      font-size: 40pt;
+      font-weight: 900;
+      text-align: center;
+    }
+    #top-timer {
+      position: fixed;
+      top: 10px;
+      right: 15px;
+      font-size: 18pt;
+      font-weight: 700;
+      color: #00ff00;
+      user-select: none;
+      z-index: 9999;
+    }
+    #info-section {
+      max-width: 480px;
+      margin: 20px auto 5px auto;
+      padding: 0 15px 5px 15px;
+      font-size: 6.5pt;
+      line-height: 1.25;
+      user-select: none;
+    }
+    .action-line {
+      margin-top: 35px;
+    }
+    .top-text-and-button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .top-text {
+      font-size: 7pt;
+      color: #00ff00;
+    }
+    .action-button {
+      background-color: black;
+      border: 1.5px solid #004400;
+      color: #004400;
+      font-size: 7pt;
+      padding: 3px 12px;
+      cursor: default;
+      user-select: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .action-button.enabled {
+      border-color: #00ff00;
+      color: #00ff00;
+      cursor: pointer;
+    }
+    .action-button.enabled:hover {
+      background-color: #00ff00;
+      color: black;
+    }
+    .countdown {
+      color: #00ff00;
+      font-size: 7pt;
+      min-width: 40px;
+      text-align: left;
+      user-select: none;
+    }
+    .bottom-text {
+      color: #ff0000;
+      font-size: 6.5pt;
+      margin-top: 5px;
+      display: none;
+    }
+    #repair-section {
+      margin-top: 10px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+    #repair-button {
+      background-color: #330033;
+      border: none;
+      color: #a080a0;
+      font-size: 7pt;
+      padding: 5px 18px;
+      font-weight: 600;
+      cursor: default;
+      user-select: none;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+      display: block;
+      margin: 0 auto;
+    }
+    #repair-button.enabled {
+      background-color: #800080;
+      color: #d0b0d0;
+      cursor: pointer;
+    }
+    #repair-button.enabled:hover {
+      background-color: #b040b0;
+    }
+    #repair-countdown {
+      color: #800080;
+      font-size: 7pt;
+      display: none;
+      text-align: center;
+      margin-top: 5px;
+    }
+    #repair-message {
+      color: #800080;
+      font-size: 7pt;
+      display: none;
+      max-width: 480px;
+      margin: 3px auto 0 auto;
+      text-align: center;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
 <h1>CALLING!</h1>
 <div id="top-timer">05:00</div>
-
-<div id="info-section">
-  <!-- 동적으로 생성됨 -->
-</div>
+<div id="info-section"></div>
 
 <div id="repair-section">
   <button id="repair-button" disabled>보수 요청</button>
@@ -168,73 +152,37 @@
 
   let totalSeconds = 300;
   let topInterval = null;
-
   let clickedCount = 0;
 
   const texts = [
-    {
-      top: '파랑파랑 보면 따라오세요.',
-      bottom: '들어오자마자 보이는 파란 파티션 두칸 따라 들어오세요.'
-    },
-    {
-      top: "그리고 가운데 퍼스트 에리어 입구 지나 '통곡의 절벽' 까지 오세요.",
-      bottom: '가운데 통로 따라오시고, 첫번째 파티션 구역들 입구 지나 바로 쌓여있는 이젤 앞까지 오세요.'
-    },
-    {
-      top: '세컨드 에리어 레프트동으로 들어가서 읏추읏추 앞 나무 제단 보이시죠?',
-      bottom: '두번째 파티션 구역 가장 안쪽에, 냉장고 앞 나무로 얽힌 직사각형 조형물 보이시죠?'
-    },
-    {
-      top: '거기서 뒤돌면 띡-지이잉 보이는데, 그 앞 까지 오시구요.',
-      bottom: '거기서 뒤돌면 전자레인지가 있어요. 그 앞까지 오세요.'
-    },
-    {
-      top: '우측 해피워미 보이시죠?',
-      bottom: '일직선으로 우측에 웃는 얼굴이 그려진 온풍기가 있어요.'
-    },
-    {
-      top: '그곳을 지나, 통곡의 벽도 지나, 세상 끝 가장 와아아아아안벽한 곳에 도달하세요.',
-      bottom: '거기서 벗어나서, 이젤 쌓인 파티션 통로 따라 쭉 가시구요,\n벽 끝에 \'가장 와아아아아안벽한\'이라는 포스터 붙어있는데 거기까지 오세요.'
-    },
-    {
-      top: '왼쪽 보시면 끼이익 안쪽 덕지덕지 보이시죠? 거기 앞에 두면 돼요!',
-      bottom: '왼쪽 보시면 입구 청문 안쪽에 배달 전단지들 붙어 있어요. 거기 두고 가세요.'
-    }
+    { top: '파랑파랑 보면 따라오세요.', bottom: '들어오자마자 보이는 파란 파티션 두칸 따라 들어오세요.' },
+    { top: "그리고 가운데 퍼스트 에리어 입구 지나 '통곡의 절벽' 까지 오세요.", bottom: '가운데 통로 따라오시고, 첫번째 파티션 구역들 입구 지나 바로 쌓여있는 이젤 앞까지 오세요.' },
+    { top: '세컨드 에리어 레프트동으로 들어가서 읏추읏추 앞 나무 제단 보이시죠?', bottom: '두번째 파티션 구역 가장 안쪽에, 냉장고 앞 나무로 얽힌 직사각형 조형물 보이시죠?' },
+    { top: '거기서 뒤돌면 띡-지이잉 보이는데, 그 앞 까지 오시구요.', bottom: '거기서 뒤돌면 전자레인지가 있어요. 그 앞까지 오세요.' },
+    { top: '우측 해피워미 보이시죠?', bottom: '일직선으로 우측에 웃는 얼굴이 그려진 온풍기가 있어요.' },
+    { top: '그곳을 지나, 통곡의 벽도 지나, 세상 끝 가장 와아아아아안벽한 곳에 도달하세요.', bottom: '거기서 벗어나서, 이젤 쌓인 파티션 통로 따라 쭉 가시구요, 벽 끝에 \'가장 와아아아아안벽한\'이라는 포스터 붙어있는데 거기까지 오세요.' },
+    { top: '왼쪽 보시면 끼이익 안쪽 덕지덕지 보이시죠? 거기 앞에 두면 돼요!', bottom: '왼쪽 보시면 입구 청문 안쪽에 배달 전단지들 붙어 있어요. 거기 두고 가세요.' }
   ];
 
-  // 오디오 관련 (기존 유지)
-  let audioLayers = [];
+  let ringtoneAudio = null;
   let audioStarted = false;
-  let layeredSoundInterval = null;
 
-  function playLayeredSound() {
-    const newAudio = new Audio('cellphone-ringing.mp3');
-    newAudio.loop = true;
-    newAudio.volume = 0.1;
-    newAudio.play().catch(() => {});
-    audioLayers.push(newAudio);
-  }
-
-  function startAudioLayers() {
+  function startAudio() {
     if (audioStarted) return;
     audioStarted = true;
-    playLayeredSound();
-    layeredSoundInterval = setInterval(() => {
-      playLayeredSound();
-    }, 10000);
+    ringtoneAudio = new Audio('cellphone-ringing.mp3');
+    ringtoneAudio.loop = true;
+    ringtoneAudio.volume = 0.2;
+    ringtoneAudio.play().catch((e) => {
+      console.warn("오디오 재생 실패:", e);
+    });
   }
 
   function updateTopTimer() {
     const min = Math.floor(totalSeconds / 60);
     const sec = totalSeconds % 60;
     topTimer.textContent = (min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec;
-
-    if (totalSeconds <= 60) {
-      topTimer.style.color = 'red';
-    } else {
-      topTimer.style.color = '#00ff00';
-    }
-
+    if (totalSeconds <= 60) topTimer.style.color = 'red';
     if (totalSeconds <= 0) {
       clearInterval(topInterval);
       location.reload();
@@ -249,20 +197,14 @@
     }, 1000);
   }
 
-  // 버튼 활성화 함수 (색상/상태 변경)
   function enableButton(btn) {
     btn.disabled = false;
     btn.classList.add('enabled');
   }
+
   function disableButton(btn) {
     btn.disabled = true;
     btn.classList.remove('enabled');
-  }
-
-  // 첫 버튼만 활성화해 시작
-  function initButtons() {
-    const firstBtn = infoSection.querySelector('button');
-    if (firstBtn) enableButton(firstBtn);
   }
 
   function createActionLine(index) {
@@ -286,7 +228,7 @@
 
     const bottomText = document.createElement('div');
     bottomText.className = 'bottom-text';
-    bottomText.textContent = texts[index].bottom.replace(/\n/g, '\n');
+    bottomText.textContent = texts[index].bottom;
 
     topTextAndButton.appendChild(topSpan);
     topTextAndButton.appendChild(button);
@@ -317,39 +259,27 @@
           clearInterval(timerId);
           countdown.textContent = '';
           bottomText.style.display = 'block';
-
           clickedCount++;
-
           if (index + 1 < texts.length) {
             const nextBtn = infoSection.children[index + 1].querySelector('button');
             enableButton(nextBtn);
           } else {
-            enableRepairButton();
+            enableButton(repairButton);
           }
         } else {
           countdown.textContent = time + '초';
         }
       }, 1000);
 
-      startAudioLayers();
+      startAudio();
     });
 
     return container;
   }
 
-  function enableRepairButton() {
-    repairButton.disabled = false;
-    repairButton.classList.add('enabled');
-  }
-  function disableRepairButton() {
-    repairButton.disabled = true;
-    repairButton.classList.remove('enabled');
-  }
-
   repairButton.addEventListener('click', () => {
     if (repairButton.disabled) return;
-
-    disableRepairButton();
+    disableButton(repairButton);
     repairCountdown.style.display = 'block';
     repairMessage.style.display = 'none';
 
@@ -372,14 +302,12 @@
     texts.forEach((_, i) => {
       infoSection.appendChild(createActionLine(i));
     });
-    disableRepairButton();
+    const firstBtn = infoSection.querySelector('button');
+    if (firstBtn) enableButton(firstBtn);
     startTopTimer();
-    initButtons();
   }
 
-  window.onload = () => {
-    init();
-  };
+  window.onload = init;
 </script>
 
 </body>
