@@ -14,8 +14,8 @@
     overflow-x: hidden;
   }
   h1 {
-    margin: 8px 0 0 0; /* 조금 더 위로 */
-    font-size: 31pt; /* 36pt에서 5pt 줄임 */
+    margin: 8px 0 0 0;
+    font-size: 31pt;
     font-weight: 900;
     text-align: center;
   }
@@ -23,7 +23,7 @@
     position: fixed;
     top: 10px;
     right: 15px;
-    font-size: 18pt; /* 3pt 줄임 */
+    font-size: 18pt;
     font-weight: 700;
     color: #00ff00;
     user-select: none;
@@ -31,10 +31,10 @@
   }
   #info-section {
     max-width: 480px;
-    margin: 30px auto 5px auto; /* 본문 더 위로 당김 (기존 50px → 30px) */
+    margin: 30px auto 5px auto;
     padding: 0 15px 5px 15px;
-    font-size: 6.5pt; /* 폰트 약간 줄임 */
-    line-height: 1.25; /* 줄간격 약간 줄임 */
+    font-size: 6.5pt;
+    line-height: 1.25;
     user-select: none;
     white-space: normal;
   }
@@ -49,14 +49,14 @@
   }
   .top-text {
     color: #00ff00;
-    font-size: 7pt; /* 줄임 */
-    white-space: pre-wrap; /* 줄바꿈 허용 */
+    font-size: 7pt;
+    white-space: pre-wrap;
   }
   .action-button {
     background-color: black;
-    border: 1.5px solid #004400; /* 초기 어두운 상태 */
+    border: 1.5px solid #004400;
     color: #004400;
-    font-size: 7pt; /* 줄임 */
+    font-size: 7pt;
     padding: 3px 12px;
     cursor: default;
     user-select: none;
@@ -74,21 +74,21 @@
   }
   .countdown {
     color: #00ff00;
-    font-size: 7pt; /* 줄임 */
+    font-size: 7pt;
     min-width: 40px;
     text-align: left;
     user-select: none;
   }
   .bottom-text {
     color: #ff0000;
-    font-size: 6.5pt; /* 줄임 */
+    font-size: 6.5pt;
     margin-top: 5px;
     white-space: pre-wrap;
     user-select: none;
     display: none;
   }
   #repair-section {
-    margin-top: 10px; /* 더 위로 당김 (기존 15px → 10px) */
+    margin-top: 10px;
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
@@ -96,10 +96,10 @@
     user-select: none;
   }
   #repair-button {
-    background-color: #330033; /* 초기 어두운 상태 */
+    background-color: #330033;
     border: none;
     color: #a080a0;
-    font-size: 7pt; /* 줄임 */
+    font-size: 7pt;
     padding: 5px 18px;
     font-weight: 600;
     cursor: default;
@@ -120,7 +120,7 @@
   }
   #repair-countdown {
     color: #800080;
-    font-size: 7pt; /* 줄임 */
+    font-size: 7pt;
     user-select: none;
     display: none;
     text-align: center;
@@ -128,15 +128,14 @@
   }
   #repair-message {
     color: #800080;
-    font-size: 7pt; /* 줄임 */
+    font-size: 7pt;
     display: none;
     user-select: none;
     white-space: normal;
     max-width: 480px;
-    margin: 3px auto 0 auto; /* 버튼 바로 아래에 붙도록 마진 조절 */
+    margin: 3px auto 0 auto;
     text-align: center;
   }
-  /* 스크롤 바 없애기 */
   ::-webkit-scrollbar {
     display: none;
   }
@@ -195,12 +194,11 @@
       bottom: "그리고 거기서 벗어나서, 이젤 쌓인 파티션 통로 따라 쭉 가시구요,\n벽 끝에 '가장 와아아아아안벽한'이라는 포스터 붙어있는데 거기까지 오세요."
     },
     {
-      top: '왼쪽 보시면 끼이익 안쪽 덕지덕지 보이시죠? 거기 앞에 두면 돼요!',
-      bottom: '왼쪽 보시면 입구 청문 안쪽에 배달 전단지들 붙어 있어요. 거기 두고 가세요.'
+      top: '왼쪽 쾅 보시면 덕지덕지 보이시죠? 거기 앞  동그리에 두면 돼요! ',
+      bottom: '왼쪽 보시면 입구 철문 안쪽에 배달 전단지들 붙어 있어요. 거기 앞 동그란 원통에 두고 가세요.'
     }
   ];
 
-  // 오디오 관련 (레이어드 사운드 추가)
   let audioLayers = [];
 
   function playLayeredSound() {
@@ -236,7 +234,6 @@
     }, 1000);
   }
 
-  // 버튼 활성화 함수 (색상/상태 변경)
   function enableButton(btn) {
     btn.disabled = false;
     btn.classList.add('enabled');
@@ -246,7 +243,6 @@
     btn.classList.remove('enabled');
   }
 
-  // 첫 버튼만 활성화해 시작
   function initButtons() {
     const firstBtn = infoSection.querySelector('button');
     if (firstBtn) enableButton(firstBtn);
@@ -318,7 +314,6 @@
         }
       }, 1000);
 
-      // 누를 때마다 mp3 한 번씩 추가 재생
       playLayeredSound();
     });
 
@@ -356,7 +351,6 @@
     }, 1000);
   });
 
-  // 초기화
   function init() {
     texts.forEach((_, i) => {
       infoSection.appendChild(createActionLine(i));
@@ -366,7 +360,6 @@
   }
 
   init();
-
 </script>
 
 </body>
